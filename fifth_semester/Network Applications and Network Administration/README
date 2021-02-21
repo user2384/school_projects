@@ -1,0 +1,45 @@
+#SNMP Agent Extension
+
+Implemented MIB module and dynamically loadable extension of SNMP agent net-snmp. 
+
+### Included files
+ - ISA-MIB.txt
+ - isaProjectMIB.h
+ - isaProjectMIB.c
+ - Makefile
+ - manual.pdf
+ - README
+
+### Compile the program
+
+```sh
+$ make
+```
+
+### Run the program
+
+-Edit snmp config (/etc/snmp/snmpd.conf) file by adding:
+dlmod isaProjectMIB /home/user/.../isaProjectMIB.so
+
+-Make sure your snmp daemon is running in one terminal window using command:
+```sh
+$ sudo snmpd -f -L -DisaProjectMIB,dlmod
+```
+
+-Now in the other terminal window use these commands:
+```sh
+$ snmpset localhost UCD-DLMOD-MIB::dlmodStatus.1 i create
+$ snmptable localhost UCD-DLMOD-MIB::dlmodTable
+$ snmpset localhost UCD-DLMOD-MIB::dlmodName.1 s isaProjectMIB UCD-DLMOD-MIB::dlmodPath.1 s /home/user/.../isaProjectMIB.so
+$ snmptable localhost UCD-DLMOD-MIB::dlmodTable
+$ snmpset localhost UCD-DLMOD-MIB::dlmodStatus.1 i load
+```
+
+-Access the objects specified in the MIB file by typing:
+```sh
+$ snmpget localhost ISA-MIB::loginObject.0
+$ snmpget localhost ISA-MIB::timeObject.0
+$ snmpget localhost ISA-MIB::integerObject.0
+$ snmpset localhost ISA-MIB::integerObject.0 i 2
+$ snmpget localhost ISA-MIB::infoObject.0
+```
