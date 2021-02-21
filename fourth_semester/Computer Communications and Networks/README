@@ -1,0 +1,25 @@
+#Packet sniffer
+
+Packet sniffer a simple packet sniffer application based on libpcap that displays packet information. Program has to be run as root user.
+
+### Included files
+ - ipk-sniffer.c
+ - Makefile
+ - manual.pdf
+ - README
+
+### Compile the program
+
+```sh
+$ make
+```
+
+### Usage information
+```sh
+$ ./ipk-sniffer -h
+```
+
+### Run the program
+```sh
+$ ./ipk-sniffer -i interface [-p port] [--tcp|-t] [--udp|-u] [-n num]\n
+```
