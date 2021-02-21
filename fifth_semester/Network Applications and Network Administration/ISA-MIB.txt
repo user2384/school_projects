@@ -1,0 +1,48 @@
+ISA-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+	OBJECT-TYPE, Integer32,
+	MODULE-IDENTITY, experimental	FROM SNMPv2-SMI
+	SnmpAdminString			FROM SNMP-FRAMEWORK-MIB
+	MODULE-COMPLIANCE, OBJECT-GROUP	FROM SNMPv2-CONF;
+
+isaProjectMIB MODULE-IDENTITY
+	LAST-UPDATED "202010290000Z"
+	ORGANIZATION "fit-isa"
+	CONTACT-INFO "Viktoria Haleckova"
+	DESCRIPTION  "A simple MIB module as a student's project."
+	::= { experimental 22 }
+
+loginObject OBJECT-TYPE
+	SYNTAX 		SnmpAdminString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION	
+		"This is a simple object which merely houses a string. It's only purpose is to hold the value of a single string (login of a student)."
+	::= { isaProjectMIB 1 }
+
+timeObject OBJECT-TYPE
+	SYNTAX 		SnmpAdminString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"This is a simple string object. It's value indicates current date.time accrding to RFC 3339."
+	::= { isaProjectMIB 2 }
+
+integerObject OBJECT-TYPE
+	SYNTAX		Integer32
+	MAX-ACCESS	read-write
+	STATUS		current
+	DESCRIPTION
+		"This is an object that simply supports a writable integer."
+	::= { isaProjectMIB 3 }
+
+infoObject OBJECT-TYPE
+	SYNTAX		SnmpAdminString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+		"This is a simple string object. It's only purpose is to hold information about the Operating System."
+	::= { isaProjectMIB 4 }
+
+END
